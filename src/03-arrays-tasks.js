@@ -489,7 +489,8 @@ function getIntervalArray(start, end) {
  */
 function distinct(arr) {
   const arrSet = new Set(arr);
-  return arrSet;
+  const array = Array.from(arrSet);
+  return array;
 }
 
 /**
@@ -581,19 +582,21 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
+  let result;
   if (arr.length % 2 !== 0) {
     const arr1 = arr.slice(0, Math.floor(arr.length / 2));
     const arr2 = arr.slice(Math.ceil(arr.length / 2), arr.length);
-    arr.slice(0, Math.ceil(arr.length / 2));
-    arr.slice(arr.length - 1);
-    arr.concat(arr1);
-    arr2.concat(arr);
-    return arr;
+    const arrA = arr.slice(0, Math.floor(arr.length / 2 + 1)).slice(Math.ceil(arr.length / 2 - 1));
+    const arrB = arrA.concat(arr1);
+    result = arr2.concat(arrB);
+  } if (arr.length % 2 === 0) {
+    const arr2 = arr.slice(Math.ceil(arr.length / 2), arr.length);
+    const arrK = arr.slice(0, Math.floor(arr.length / 2));
+    arr2.concat(arrK);
+    const arr4 = arr2.concat(arrK);
+    result = arr4;
   }
-  const arr2 = arr.slice(Math.ceil(arr.length / 2), arr.length);
-  arr.slice(0, Math.floor(arr.length / 2));
-  arr2.concat(arr);
-  return arr;
+  return result;
 }
 
 
